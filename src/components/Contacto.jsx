@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Send, MapPin, Clock, Phone, Mail, CheckCircle, AlertCircle } from 'lucide-react'
+import { Send, MapPin, Clock, Phone, Mail, CheckCircle, AlertCircle, PhoneCall } from 'lucide-react'
 import TechBackground from './TechBackground'
 
 const Contacto = () => {
@@ -13,6 +13,7 @@ const Contacto = () => {
   })
   const [formStatus, setFormStatus] = useState({ type: '', message: '' })
   const [isPreSelected, setIsPreSelected] = useState(false)
+  const [contactMethod, setContactMethod] = useState('whatsapp') // 'whatsapp' o 'email'
 
   // Leer el servicio seleccionado del portafolio
   useEffect(() => {
@@ -41,7 +42,7 @@ const Contacto = () => {
       return
     }
 
-    // Crear mensaje para WhatsApp
+    // Crear mensaje
     const serviceNames = {
       'reparacion': 'Reparación de Hardware',
       'mantenimiento': 'Mantenimiento Preventivo',
@@ -54,7 +55,9 @@ const Contacto = () => {
 
     const serviceName = serviceNames[formData.service] || formData.service
 
-    const whatsappMessage = `¡Hola PCStyle! Me interesa su servicio:
+    if (contactMethod === 'whatsapp') {
+      // Envío por WhatsApp
+      const whatsappMessage = `¡Hola PCStyle! Me interesa su servicio:
 
 👤 *Nombre:* ${formData.name}
 📧 *Email:* ${formData.email}
@@ -64,22 +67,54 @@ const Contacto = () => {
 
 ¡Gracias!`
 
-    // Codificar el mensaje para URL
-    const encodedMessage = encodeURIComponent(whatsappMessage)
-    const whatsappUrl = `https://wa.me/573225934970?text=${encodedMessage}`
+      // Codificar el mensaje para URL
+      const encodedMessage = encodeURIComponent(whatsappMessage)
+      const whatsappUrl = `https://wa.me/573225934970?text=${encodedMessage}`
 
-    // Mostrar mensaje de éxito primero
-    setFormStatus({ type: 'success', message: '¡Redirigiendo a WhatsApp...' })
-    
-    // Abrir WhatsApp después de un pequeño delay para mostrar el mensaje
-    setTimeout(() => {
-      window.location.href = whatsappUrl
-    }, 300)
+      // Mostrar mensaje de éxito primero
+      setFormStatus({ type: 'success', message: '¡Redirigiendo a WhatsApp...' })
+      
+      // Abrir WhatsApp después de un pequeño delay para mostrar el mensaje
+      setTimeout(() => {
+        window.location.href = whatsappUrl
+      }, 300)
+    } else {
+      // Envío por Email
+      const emailSubject = encodeURIComponent(`Solicitud de Servicio: ${serviceName} - ${formData.name}`)
+      const emailBody = encodeURIComponent(`Hola PCStyle,
+
+Me interesa su servicio y me gustaría recibir más información.
+
+Información de contacto:
+👤 Nombre: ${formData.name}
+📧 Email: ${formData.email}
+📱 Teléfono: ${formData.phone}
+🔧 Servicio solicitado: ${serviceName}
+
+Mensaje:
+${formData.message}
+
+¡Gracias por su atención!
+
+Saludos,
+${formData.name}`)
+
+      const emailUrl = `mailto:pcstyle07@gmail.com?subject=${emailSubject}&body=${emailBody}`
+
+      // Mostrar mensaje de éxito primero
+      setFormStatus({ type: 'success', message: '¡Abriendo cliente de correo...' })
+      
+      // Abrir cliente de correo después de un pequeño delay
+      setTimeout(() => {
+        window.location.href = emailUrl
+      }, 300)
+    }
     
     // Limpiar formulario después de un breve delay
     setTimeout(() => {
       setFormData({ name: '', email: '', phone: '', service: '', message: '' })
       setFormStatus({ type: '', message: '' })
+      setContactMethod('whatsapp') // Resetear a WhatsApp por defecto
     }, 2000)
   }
 
@@ -87,31 +122,35 @@ const Contacto = () => {
     {
       icon: MapPin,
       title: 'Ubicación',
-      content: 'Urbanización Monterosso, Manzana E #casa 28 2AN-60\nCúcuta, Norte de Santander, Colombia',
-      color: 'from-blue-500 to-blue-600'
+      content: 'Urbanización Monterosso, Manzana E casa 28 #An-60\nCúcuta, Norte de Santander, Colombia',
+      color: 'from-blue-500 to-blue-600',
+      link: null
     },
     {
       icon: Clock,
       title: 'Horario',
       content: 'Abierto ⋅ Cierra a las 8 p.m.',
-      color: 'from-pink-500 to-pink-600'
+      color: 'from-pink-500 to-pink-600',
+      link: null
     },
     {
       icon: Phone,
       title: 'Teléfono',
       content: '322 5934970',
-      color: 'from-green-500 to-green-600'
+      color: 'from-green-500 to-green-600',
+      link: 'https://wa.me/573225934970'
     },
     {
       icon: Mail,
       title: 'Email',
-      content: 'contacto@pcstyle.com',
-      color: 'from-orange-500 to-orange-600'
+      content: 'pcstyle07@gmail.com',
+      color: 'from-orange-500 to-orange-600',
+      link: 'mailto:pcstyle07@gmail.com'
     },
   ]
 
   return (
-    <section id="contacto" className="py-24 bg-slate-900 relative overflow-hidden">
+    <section id="contacto" className="py-16 sm:py-20 lg:py-24 bg-slate-900 relative overflow-hidden">
       {/* Tech Background */}
       <TechBackground />
 
@@ -121,10 +160,10 @@ const Contacto = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-16 lg:mb-20"
         >
           <motion.h2
-            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -132,34 +171,80 @@ const Contacto = () => {
           >
             <span className="text-gradient">Contáctanos</span>
           </motion.h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto px-2 sm:px-0">
             Estamos aquí para ayudarte. ¡Agenda tu servicio ahora!
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-12">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 max-w-6xl mx-auto mb-8 sm:mb-10 lg:mb-12">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-slate-800/80 backdrop-blur-sm p-8 rounded-2xl border border-slate-700/50"
+            className="bg-slate-800/80 backdrop-blur-sm p-5 sm:p-6 lg:p-8 rounded-2xl border border-slate-700/50"
           >
-            {isPreSelected && (
+              {isPreSelected && (
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mb-6 p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg"
+                className="mb-4 sm:mb-6 p-3 sm:p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg"
               >
-                <p className="text-blue-400 text-sm">
+                <p className="text-blue-400 text-xs sm:text-sm">
                   ✓ Servicio pre-seleccionado. Por favor, completa los datos restantes.
                 </p>
               </motion.div>
             )}
-            <form onSubmit={handleSubmit} className="space-y-6">
+            
+            {/* Botón de Llamada Directa */}
+            <motion.a
+              href="tel:+573225934970"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+              className="mb-4 sm:mb-6 w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-6 py-3 sm:py-3.5 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 shadow-lg shadow-blue-500/50 flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-blue-500/70"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <PhoneCall className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span>Llamar ahora</span>
+            </motion.a>
+            
+            {/* Selector de método de contacto */}
+            <div className="mb-4 sm:mb-6">
+              <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
+                Método de contacto
+              </label>
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  onClick={() => setContactMethod('whatsapp')}
+                  className={`flex-1 px-4 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 ${
+                    contactMethod === 'whatsapp'
+                      ? 'bg-green-500/90 text-white shadow-lg shadow-green-500/50'
+                      : 'bg-slate-700/50 text-gray-300 hover:bg-slate-700'
+                  }`}
+                >
+                  📱 WhatsApp
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setContactMethod('email')}
+                  className={`flex-1 px-4 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 ${
+                    contactMethod === 'email'
+                      ? 'bg-orange-500/90 text-white shadow-lg shadow-orange-500/50'
+                      : 'bg-slate-700/50 text-gray-300 hover:bg-slate-700'
+                  }`}
+                >
+                  ✉️ Email
+                </button>
+              </div>
+            </div>
+            
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 lg:space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-gray-300 mb-1.5 sm:mb-2">
                   Nombre completo
                 </label>
                 <input
@@ -169,13 +254,13 @@ const Contacto = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-900 border border-slate-600 rounded-lg text-white text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Tu nombre"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-gray-300 mb-1.5 sm:mb-2">
                   Email
                 </label>
                 <input
@@ -185,13 +270,13 @@ const Contacto = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-900 border border-slate-600 rounded-lg text-white text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="tu@email.com"
                 />
               </div>
 
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="phone" className="block text-xs sm:text-sm font-medium text-gray-300 mb-1.5 sm:mb-2">
                   Teléfono
                 </label>
                 <input
@@ -201,13 +286,13 @@ const Contacto = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-900 border border-slate-600 rounded-lg text-white text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="322 5934970"
                 />
               </div>
 
               <div>
-                <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="service" className="block text-xs sm:text-sm font-medium text-gray-300 mb-1.5 sm:mb-2">
                   Servicio
                 </label>
                 <select
@@ -216,7 +301,7 @@ const Contacto = () => {
                   value={formData.service}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-900 border border-slate-600 rounded-lg text-white text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 >
                   <option value="">Selecciona un servicio</option>
                   <option value="reparacion">Reparación de Hardware</option>
@@ -230,7 +315,7 @@ const Contacto = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="message" className="block text-xs sm:text-sm font-medium text-gray-300 mb-1.5 sm:mb-2">
                   Mensaje
                 </label>
                 <textarea
@@ -240,7 +325,7 @@ const Contacto = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-all"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-900 border border-slate-600 rounded-lg text-white text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-all"
                   placeholder="Describe tu problema o solicitud..."
                 />
               </div>
@@ -266,12 +351,25 @@ const Contacto = () => {
 
               <motion.button
                 type="submit"
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg shadow-blue-500/50 flex items-center justify-center gap-2"
-                whileHover={{ scale: 1.02, boxShadow: '0 10px 30px rgba(59, 130, 246, 0.5)' }}
+                className={`w-full px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 shadow-lg flex items-center justify-center gap-2 ${
+                  contactMethod === 'whatsapp'
+                    ? 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white shadow-green-500/50'
+                    : 'bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-orange-500/50'
+                }`}
+                whileHover={{ scale: 1.02, boxShadow: contactMethod === 'whatsapp' ? '0 10px 30px rgba(34, 197, 94, 0.5)' : '0 10px 30px rgba(249, 115, 22, 0.5)' }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Send className="w-5 h-5" />
-                Enviar Solicitud
+                {contactMethod === 'whatsapp' ? (
+                  <>
+                    <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
+                    Enviar por WhatsApp
+                  </>
+                ) : (
+                  <>
+                    <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
+                    Enviar por Email
+                  </>
+                )}
               </motion.button>
             </form>
           </motion.div>
@@ -282,31 +380,65 @@ const Contacto = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
+            className="space-y-4 sm:space-y-5 lg:space-y-6"
           >
             {contactInfo.map((info, index) => {
               const Icon = info.icon
-              return (
+              return info.link ? (
+                <motion.a
+                  key={index}
+                  href={info.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="bg-slate-800/80 backdrop-blur-sm p-4 sm:p-5 lg:p-6 rounded-2xl border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 group cursor-pointer block"
+                  whileHover={{ scale: 1.02, x: 10 }}
+                >
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    <motion.div
+                      className={`w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br ${info.color} rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg`}
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                    </motion.div>
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-white mb-1.5 sm:mb-2 text-sm sm:text-base">{info.title}</h3>
+                      <p className="whitespace-pre-line text-xs sm:text-sm text-blue-400 hover:text-blue-300 transition-colors">
+                        {info.content}
+                      </p>
+                      <p className="text-xs text-gray-500 mt-1">
+                        {info.link.includes('mailto') ? 'Haz clic para escribir' : 'Haz clic para contactar'}
+                      </p>
+                    </div>
+                  </div>
+                </motion.a>
+              ) : (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-slate-800/80 backdrop-blur-sm p-6 rounded-2xl border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 group"
+                  className="bg-slate-800/80 backdrop-blur-sm p-4 sm:p-5 lg:p-6 rounded-2xl border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 group"
                   whileHover={{ scale: 1.02, x: 10 }}
                 >
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-3 sm:gap-4">
                     <motion.div
-                      className={`w-14 h-14 bg-gradient-to-br ${info.color} rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg`}
+                      className={`w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br ${info.color} rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg`}
                       whileHover={{ rotate: 360 }}
                       transition={{ duration: 0.5 }}
                     >
-                      <Icon className="w-7 h-7 text-white" />
+                      <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                     </motion.div>
-                    <div>
-                      <h3 className="font-semibold text-white mb-2">{info.title}</h3>
-                      <p className="text-gray-400 whitespace-pre-line">{info.content}</p>
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-white mb-1.5 sm:mb-2 text-sm sm:text-base">{info.title}</h3>
+                      <p className="text-gray-400 whitespace-pre-line text-xs sm:text-sm">
+                        {info.content}
+                      </p>
                     </div>
                   </div>
                 </motion.div>
@@ -321,19 +453,19 @@ const Contacto = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-6xl mx-auto mt-12"
+          className="max-w-6xl mx-auto mt-8 sm:mt-10 lg:mt-12"
         >
           <div className="bg-slate-800/80 backdrop-blur-sm rounded-2xl border border-slate-700/50 overflow-hidden">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.457637421174!2d-72.50682212542341!3d7.951568704923795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e6645bfd93b47ed%3A0x6d2d74af0c20ccdf!2sPCStyle%20-%20Servicio%20t%C3%A9cnico%20en%20computadores%20y%20port%C3%A1tiles%20a%20domicilio!5e0!3m2!1ses-419!2sco!4v1762020627275!5m2!1ses-419!2sco"
               width="100%"
-              height="450"
+              height="300"
               style={{ border: 0 }}
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Ubicación PCStyle - Urbanización Monterosso, Manzana E #casa 28 2AN-60, Cúcuta"
-              className="w-full"
+              title="Ubicación PCStyle - Urbanización Monterosso, Manzana E casa 28 #An-60, Cúcuta"
+              className="w-full sm:h-[350px] lg:h-[450px]"
             />
           </div>
         </motion.div>

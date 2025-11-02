@@ -68,7 +68,7 @@ const Servicios = () => {
   }
 
   return (
-    <section id="servicios" className="py-24 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+    <section id="servicios" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
       {/* Tech Background */}
       <TechBackground />
 
@@ -78,10 +78,10 @@ const Servicios = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-16 lg:mb-20"
         >
           <motion.h2
-            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -89,7 +89,7 @@ const Servicios = () => {
           >
             Nuestros <span className="text-gradient">Servicios</span>
           </motion.h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto px-2 sm:px-0">
             Soluciones completas para mantener tu equipo en perfecto estado
           </p>
         </motion.div>
@@ -99,7 +99,7 @@ const Servicios = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8"
         >
           {servicios.map((servicio, index) => {
             const Icon = servicio.icon
@@ -107,24 +107,24 @@ const Servicios = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="group relative bg-slate-800/80 backdrop-blur-sm p-8 rounded-2xl border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 overflow-hidden"
+                className="group relative bg-slate-800/80 backdrop-blur-sm p-5 sm:p-6 lg:p-8 rounded-2xl border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 overflow-hidden"
                 whileHover={{ y: -10, scale: 1.02 }}
               >
                 {/* Glowing background on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${servicio.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
                 
                 <motion.div
-                  className={`w-16 h-16 bg-gradient-to-br ${servicio.color} rounded-xl flex items-center justify-center mb-6 relative z-10 shadow-lg`}
+                  className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br ${servicio.color} rounded-xl flex items-center justify-center mb-4 sm:mb-5 lg:mb-6 relative z-10 shadow-lg`}
                   whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <Icon className="w-8 h-8 text-white" />
+                  <Icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" />
                 </motion.div>
                 
-                <h3 className="text-2xl font-bold mb-4 text-white relative z-10">
+                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white relative z-10">
                   {servicio.title}
                 </h3>
-                <p className="text-gray-400 leading-relaxed relative z-10">
+                <p className="text-gray-400 text-sm sm:text-base leading-relaxed relative z-10">
                   {servicio.description}
                 </p>
 

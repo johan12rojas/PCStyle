@@ -71,7 +71,7 @@ const Stats = () => {
   }
 
   return (
-    <section ref={ref} className="py-24 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+    <section ref={ref} className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
       {/* Tech Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
         {/* Líneas de circuito */}
@@ -114,7 +114,7 @@ const Stats = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid sm:grid-cols-3 gap-8"
+          className="grid sm:grid-cols-3 gap-5 sm:gap-6 lg:gap-8"
         >
           {stats.map((stat, index) => {
             const Icon = stat.icon
@@ -122,7 +122,7 @@ const Stats = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="relative bg-slate-800/80 backdrop-blur-sm p-8 rounded-2xl border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 group"
+                className="relative bg-slate-800/80 backdrop-blur-sm p-5 sm:p-6 lg:p-8 rounded-2xl border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 group"
                 whileHover={{ y: -10, scale: 1.05 }}
               >
                 {/* Glow effect on hover */}
@@ -130,16 +130,16 @@ const Stats = () => {
                 
                 {/* Icon */}
                 <motion.div
-                  className={`w-16 h-16 bg-gradient-to-br ${stat.color} rounded-xl flex items-center justify-center mb-6 relative z-10 shadow-lg`}
+                  className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br ${stat.color} rounded-xl flex items-center justify-center mb-4 sm:mb-5 lg:mb-6 relative z-10 shadow-lg`}
                   whileHover={{ rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.6 }}
                 >
-                  <Icon className="w-8 h-8 text-white" />
+                  <Icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" />
                 </motion.div>
                 
                 {/* Value */}
                 <motion.h3
-                  className="text-5xl sm:text-6xl font-bold mb-4 text-white relative z-10"
+                  className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 text-white relative z-10"
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.8, delay: stat.delay, type: 'spring', stiffness: 200 }}
@@ -148,7 +148,7 @@ const Stats = () => {
                 </motion.h3>
                 
                 {/* Label */}
-                <p className="text-gray-400 text-lg font-medium relative z-10">
+                <p className="text-gray-400 text-base sm:text-lg font-medium relative z-10">
                   {stat.label}
                 </p>
               </motion.div>

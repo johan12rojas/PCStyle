@@ -46,7 +46,7 @@ const Navbar = () => {
           >
             <img 
               src="/IMG/pcstyle.png" 
-              alt="PCStyle Logo" 
+              alt="PCStyle - Servicio técnico de computadores en Cúcuta" 
               className="h-12 w-auto object-contain"
             />
           </motion.a>

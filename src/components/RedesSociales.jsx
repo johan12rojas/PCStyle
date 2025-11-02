@@ -24,7 +24,7 @@ const RedesSociales = () => {
   }
 
   return (
-    <section className="py-24 bg-slate-900 relative overflow-hidden">
+    <section className="py-16 sm:py-20 lg:py-24 bg-slate-900 relative overflow-hidden">
       {/* Tech Background */}
       <TechBackground />
 
@@ -36,22 +36,22 @@ const RedesSociales = () => {
           viewport={{ once: true, margin: '-100px' }}
           className="max-w-7xl mx-auto"
         >
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
             {/* Lado Izquierdo - Texto y Botones */}
-            <motion.div variants={itemVariants} className="text-center lg:text-left">
+            <motion.div variants={itemVariants} className="text-center lg:text-left order-2 lg:order-1">
               {/* Camera Icon */}
               <motion.div
-                className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto lg:mx-0 mb-6 shadow-lg"
+                className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto lg:mx-0 mb-4 sm:mb-6 shadow-lg"
                 whileHover={{ rotate: 360, scale: 1.1 }}
                 transition={{ duration: 0.6 }}
               >
-                <Camera className="w-10 h-10 text-white" />
+                <Camera className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
               </motion.div>
 
               {/* Title */}
               <motion.h2
                 variants={itemVariants}
-                className="text-3xl sm:text-4xl font-bold text-white mb-4"
+                className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 px-2 sm:px-0"
               >
                 ¿Quieres ver más trabajos?
               </motion.h2>
@@ -59,7 +59,7 @@ const RedesSociales = () => {
               {/* Description */}
               <motion.p
                 variants={itemVariants}
-                className="text-gray-400 text-lg mb-8 leading-relaxed"
+                className="text-gray-400 text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed px-2 sm:px-0 max-w-xl mx-auto lg:mx-0"
               >
                 Síguenos en nuestras redes sociales para ver actualizaciones constantes de nuestros mantenimientos
               </motion.p>
@@ -67,18 +67,18 @@ const RedesSociales = () => {
               {/* Buttons */}
               <motion.div
                 variants={itemVariants}
-                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start px-2 sm:px-0"
               >
                 {/* Instagram Button */}
                 <motion.a
                   href="https://www.instagram.com/pcstylecol/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative bg-gradient-to-r from-pink-500 via-purple-500 to-pink-600 hover:from-pink-600 hover:via-purple-600 hover:to-pink-700 text-white px-6 py-3 rounded-lg font-semibold text-base transition-all duration-300 shadow-lg shadow-pink-500/50 flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap"
+                  className="group relative bg-gradient-to-r from-pink-500 via-purple-500 to-pink-600 hover:from-pink-600 hover:via-purple-600 hover:to-pink-700 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 shadow-lg shadow-pink-500/50 flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap"
                   whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(236, 72, 153, 0.5)' }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Instagram className="w-5 h-5" />
+                  <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
                   <span>Ver en Instagram</span>
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-500"
@@ -93,11 +93,11 @@ const RedesSociales = () => {
                   href="https://www.facebook.com/pcstylecol/?locale=es_LA"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold text-base transition-all duration-300 shadow-lg shadow-blue-500/50 flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap"
+                  className="group relative bg-blue-600 hover:bg-blue-700 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 shadow-lg shadow-blue-500/50 flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap"
                   whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(59, 130, 246, 0.5)' }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Facebook className="w-5 h-5" />
+                  <Facebook className="w-4 h-4 sm:w-5 sm:h-5" />
                   <span>Ver en Facebook</span>
                   <motion.div
                     className="absolute inset-0 bg-blue-700"
@@ -110,7 +110,7 @@ const RedesSociales = () => {
             </motion.div>
 
             {/* Lado Derecho - iPhone Mockup con Facebook */}
-            <motion.div variants={itemVariants} className="lg:h-full flex items-center justify-center w-full">
+            <motion.div variants={itemVariants} className="lg:h-full flex items-center justify-center w-full order-1 lg:order-2 mb-6 lg:mb-0">
               <motion.div 
                 className="relative"
                 whileHover={{ scale: 1.05, y: -10 }}

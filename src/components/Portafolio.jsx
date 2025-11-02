@@ -90,7 +90,7 @@ const Portafolio = () => {
   }
 
   return (
-    <section id="portafolio" className="py-24 bg-slate-900 relative overflow-hidden">
+    <section id="portafolio" className="py-16 sm:py-20 lg:py-24 bg-slate-900 relative overflow-hidden">
       {/* Tech Background */}
       <TechBackground />
 
@@ -100,10 +100,10 @@ const Portafolio = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-16 lg:mb-20"
         >
           <motion.h2
-            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -111,7 +111,7 @@ const Portafolio = () => {
           >
             Nuestro <span className="text-gradient">Portafolio</span>
           </motion.h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto px-2 sm:px-0">
             Trabajos realizados con excelencia y dedicación
           </p>
         </motion.div>
@@ -121,9 +121,28 @@ const Portafolio = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8"
         >
-          {proyectos.map((proyecto, index) => (
+          {proyectos.map((proyecto, index) => {
+            // Alt text específico según el tipo de proyecto
+            const getAltText = () => {
+              switch (proyecto.id) {
+                case 'mantenimiento':
+                  return proyecto.title === 'Ensamblaje de PC' 
+                    ? 'Técnico ensamblando computadora personalizada en Cúcuta - PCStyle servicio técnico'
+                    : 'Técnico configurando sistema operativo y optimizando PC en Cúcuta - PCStyle servicio técnico';
+                case 'actualizacion':
+                  return 'Técnico instalando programas y software en computadora en Cúcuta - PCStyle servicio técnico';
+                case 'reparacion':
+                  return 'Técnico reparando motherboard y placa base dañada en Cúcuta - PCStyle servicio técnico';
+                case 'recuperacion':
+                  return 'Técnico recuperando datos de disco duro dañado en Cúcuta - PCStyle servicio técnico';
+                default:
+                  return `Técnico de PCStyle realizando ${proyecto.title.toLowerCase()} en Cúcuta - Servicio técnico profesional`;
+              }
+            };
+
+            return (
             <motion.div
               key={index}
               variants={itemVariants}
@@ -138,7 +157,7 @@ const Portafolio = () => {
                       <img
                         key={idx}
                         src={img}
-                        alt={`${proyecto.title} ${idx + 1}`}
+                        alt={`${getAltText()} - Imagen ${idx + 1}`}
                         className="w-full h-full object-cover"
                         loading="lazy"
                       />
@@ -147,7 +166,7 @@ const Portafolio = () => {
                 ) : (
                   <img
                     src={proyecto.image}
-                    alt={proyecto.title}
+                    alt={getAltText()}
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
@@ -159,26 +178,27 @@ const Portafolio = () => {
                   initial={false}
                 >
                   <motion.button
-                    className="bg-white/90 text-gray-900 px-4 py-2 rounded-lg flex items-center gap-2 font-semibold shadow-lg"
+                    className="bg-white/90 text-gray-900 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg flex items-center gap-2 font-semibold text-sm sm:text-base shadow-lg whitespace-nowrap"
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setSelectedProject(proyecto)}
                   >
-                    <Eye className="w-4 h-4" />
+                    <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     Ver más
                   </motion.button>
                 </motion.div>
               </div>
               
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-white">{proyecto.title}</h3>
-                <p className="text-gray-400 mb-4">{proyecto.description}</p>
-                <span className={`inline-block bg-gradient-to-r ${proyecto.color} text-white px-4 py-1 rounded-full text-sm font-semibold`}>
+              <div className="p-4 sm:p-5 lg:p-6">
+                <h3 className="text-lg sm:text-xl font-bold mb-2 text-white">{proyecto.title}</h3>
+                <p className="text-gray-400 mb-3 sm:mb-4 text-sm sm:text-base">{proyecto.description}</p>
+                <span className={`inline-block bg-gradient-to-r ${proyecto.color} text-white px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-semibold`}>
                   {proyecto.category}
                 </span>
               </div>
             </motion.div>
-          ))}
+          );
+          })}
         </motion.div>
       </div>
 
@@ -201,10 +221,10 @@ const Portafolio = () => {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="p-6 border-b border-slate-700 flex items-center justify-between">
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-2">{selectedProject.title}</h3>
-                  <span className={`inline-block bg-gradient-to-r ${selectedProject.color} text-white px-4 py-1 rounded-full text-sm font-semibold`}>
+              <div className="p-4 sm:p-6 border-b border-slate-700 flex items-center justify-between gap-3 sm:gap-4">
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">{selectedProject.title}</h3>
+                  <span className={`inline-block bg-gradient-to-r ${selectedProject.color} text-white px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-semibold`}>
                     {selectedProject.category}
                   </span>
                 </div>
@@ -212,55 +232,65 @@ const Portafolio = () => {
                   whileHover={{ rotate: 90, scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setSelectedProject(null)}
-                  className="w-10 h-10 flex items-center justify-center bg-slate-700 hover:bg-slate-600 rounded-full text-white transition-colors"
+                  className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-slate-700 hover:bg-slate-600 rounded-full text-white transition-colors flex-shrink-0"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4 sm:w-5 sm:h-5" />
                 </motion.button>
               </div>
 
               {/* Content */}
-              <div className="p-6 overflow-y-auto flex-1">
-                <div className="mb-6 rounded-xl overflow-hidden">
+              <div className="p-4 sm:p-6 overflow-y-auto flex-1">
+                <div className="mb-4 sm:mb-6 rounded-xl overflow-hidden">
                   {selectedProject.collage ? (
                     <div className="grid grid-cols-2 gap-2">
-                      {selectedProject.images.map((img, idx) => (
-                        <img
-                          key={idx}
-                          src={img}
-                          alt={`${selectedProject.title} ${idx + 1}`}
-                          className="w-full h-64 object-cover"
-                          loading="lazy"
-                        />
-                      ))}
+                      {selectedProject.images.map((img, idx) => {
+                        const getModalAltText = () => {
+                          switch (selectedProject.id) {
+                            case 'mantenimiento':
+                              return 'Técnico configurando sistema operativo Windows y optimizando PC en Cúcuta - PCStyle servicio técnico';
+                            default:
+                              return `Técnico especializado realizando ${selectedProject.title.toLowerCase()} en Cúcuta - PCStyle servicio técnico profesional`;
+                          }
+                        };
+                        return (
+                          <img
+                            key={idx}
+                            src={img}
+                            alt={`${getModalAltText()} - Imagen detalle ${idx + 1}`}
+                            className="w-full h-40 sm:h-48 lg:h-64 object-cover"
+                            loading="lazy"
+                          />
+                        );
+                      })}
                     </div>
                   ) : (
                     <img
                       src={selectedProject.image}
-                      alt={selectedProject.title}
-                      className="w-full h-96 object-cover rounded-xl"
+                      alt={`Técnico de PCStyle ejecutando ${selectedProject.title.toLowerCase()} en computadora en Cúcuta - Reparación y mantenimiento de portátiles y PC`}
+                      className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-xl"
                       loading="lazy"
                     />
                   )}
                 </div>
                 
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <div>
-                    <h4 className="text-lg font-semibold text-white mb-2">Descripción General</h4>
-                    <p className="text-gray-400">{selectedProject.description}</p>
+                    <h4 className="text-base sm:text-lg font-semibold text-white mb-1.5 sm:mb-2">Descripción General</h4>
+                    <p className="text-gray-400 text-sm sm:text-base">{selectedProject.description}</p>
                   </div>
                   
                   <div>
-                    <h4 className="text-lg font-semibold text-white mb-2">Detalles del Servicio</h4>
-                    <p className="text-gray-300 leading-relaxed">{selectedProject.detailedDescription}</p>
+                    <h4 className="text-base sm:text-lg font-semibold text-white mb-1.5 sm:mb-2">Detalles del Servicio</h4>
+                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed">{selectedProject.detailedDescription}</p>
                   </div>
                 </div>
               </div>
 
               {/* Footer */}
-              <div className="p-6 border-t border-slate-700 flex justify-end">
+              <div className="p-4 sm:p-6 border-t border-slate-700 flex justify-end">
                 <motion.a
                   href="#contacto"
-                  className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg shadow-blue-500/50"
+                  className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 shadow-lg shadow-blue-500/50 whitespace-nowrap"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={(e) => {
