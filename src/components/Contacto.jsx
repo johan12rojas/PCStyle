@@ -15,13 +15,33 @@ const Contacto = () => {
   const [isPreSelected, setIsPreSelected] = useState(false)
   const [contactMethod, setContactMethod] = useState('whatsapp') // 'whatsapp' o 'email'
 
+  // Mapeo de servicios (usado en múltiples lugares)
+  const serviceNames = {
+    'reparacion': 'Reparación de Hardware',
+    'mantenimiento': 'Mantenimiento Preventivo',
+    'actualizacion': 'Actualización de Componentes',
+    'virus': 'Eliminación de Virus',
+    'recuperacion': 'Recuperación de Datos',
+    'remoto': 'Soporte Técnico Remoto',
+    'otros': 'Otros'
+  }
+
   // Leer el servicio seleccionado del portafolio
   useEffect(() => {
     const selectedService = localStorage.getItem('selectedService')
     if (selectedService) {
+      // El ID viene directamente del portafolio, lo usamos tal cual
+      // Los IDs ya están mapeados correctamente: 'mantenimiento', 'actualizacion', 'reparacion', 'recuperacion', 'remoto'
       setFormData(prev => ({ ...prev, service: selectedService }))
       setIsPreSelected(true)
-      localStorage.removeItem('selectedService')
+      
+      // Remover después de enviar el formulario o después de 60 segundos
+      const timeout = setTimeout(() => {
+        localStorage.removeItem('selectedService')
+        setIsPreSelected(false)
+      }, 60000) // 60 segundos
+      
+      return () => clearTimeout(timeout)
     }
   }, [])
 
@@ -40,17 +60,6 @@ const Contacto = () => {
     if (!emailPattern.test(formData.email)) {
       setFormStatus({ type: 'error', message: 'Por favor, ingresa un email válido.' })
       return
-    }
-
-    // Crear mensaje
-    const serviceNames = {
-      'reparacion': 'Reparación de Hardware',
-      'mantenimiento': 'Mantenimiento Preventivo',
-      'actualizacion': 'Actualización de Componentes',
-      'virus': 'Eliminación de Virus',
-      'recuperacion': 'Recuperación de Datos',
-      'remoto': 'Soporte Técnico Remoto',
-      'otros': 'Otros'
     }
 
     const serviceName = serviceNames[formData.service] || formData.service
@@ -115,6 +124,8 @@ ${formData.name}`)
       setFormData({ name: '', email: '', phone: '', service: '', message: '' })
       setFormStatus({ type: '', message: '' })
       setContactMethod('whatsapp') // Resetear a WhatsApp por defecto
+      setIsPreSelected(false) // Resetear el estado de pre-selección
+      localStorage.removeItem('selectedService') // Limpiar el servicio del localStorage
     }, 2000)
   }
 
@@ -189,11 +200,21 @@ ${formData.name}`)
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mb-4 sm:mb-6 p-3 sm:p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg"
+                className="mb-4 sm:mb-6 p-3 sm:p-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/40 rounded-lg"
               >
-                <p className="text-blue-400 text-xs sm:text-sm">
-                  ✓ Servicio pre-seleccionado. Por favor, completa los datos restantes.
-                </p>
+                <div className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-blue-300 font-semibold text-sm sm:text-base mb-1">
+                      ✓ Servicio pre-seleccionado desde el portafolio
+                    </p>
+                    <p className="text-blue-400/80 text-xs sm:text-sm">
+                      {formData.service && serviceNames[formData.service] 
+                        ? `Servicio: ${serviceNames[formData.service]}` 
+                        : 'Completa los datos restantes para continuar.'}
+                    </p>
+                  </div>
+                </div>
               </motion.div>
             )}
             

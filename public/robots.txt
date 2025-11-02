@@ -1,0 +1,32 @@
+# Robots.txt para PCStyle - pcstyle.com.co
+User-agent: *
+Allow: /
+
+# Permitir todos los recursos necesarios
+Allow: /IMG/
+Allow: /src/
+Allow: /*.js
+Allow: /*.css
+
+# Bloquear archivos innecesarios
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /*?*
+
+# Sitemap
+Sitemap: https://pcstyle.com.co/sitemap.xml
+
+# Crawl-delay para bots respetuosos
+User-agent: Googlebot
+Crawl-delay: 0
+
+User-agent: Bingbot
+Crawl-delay: 0
+
+# Bloquear bots maliciosos
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+

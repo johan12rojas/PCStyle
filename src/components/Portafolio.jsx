@@ -9,7 +9,7 @@ const Portafolio = () => {
 
   const proyectos = [
     {
-      id: 'mantenimiento',
+      id: 'actualizacion', // Ensamblaje se mapea a actualización de componentes
       title: 'Ensamblaje de PC',
       description: 'Montaje completo de computadoras personalizadas según tus necesidades',
       detailedDescription: 'Ofrecemos servicio completo de ensamblaje de computadoras personalizadas. Nuestro equipo profesional selecciona los mejores componentes para cada necesidad específica, garantizando compatibilidad y máximo rendimiento. Incluye instalación del sistema operativo, drivers actualizados y pruebas de estabilidad completas.',

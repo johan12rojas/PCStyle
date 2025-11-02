@@ -1,13 +1,11 @@
 import { motion } from 'framer-motion'
-import { Facebook, Twitter, Instagram, Linkedin, Phone, Mail, MapPin } from 'lucide-react'
+import { Facebook, Instagram, Phone, Mail, MapPin } from 'lucide-react'
 import TechBackground from './TechBackground'
 
 const Footer = () => {
   const socialLinks = [
     { icon: Facebook, href: 'https://www.facebook.com/pcstylecol/?locale=es_LA', name: 'Facebook' },
     { icon: Instagram, href: 'https://www.instagram.com/pcstylecol/', name: 'Instagram' },
-    { icon: Twitter, href: '#', name: 'Twitter' },
-    { icon: Linkedin, href: '#', name: 'LinkedIn' },
   ]
 
   const footerLinks = {
@@ -124,7 +122,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                <span className="text-gray-400 text-sm">Urbanización Monterosso, Manzana E #casa 28 2AN-60, Cúcuta, Norte de Santander</span>
+                <span className="text-gray-400 text-sm">Urbanización Monterosso, Manzana E casa 28 #An-60, Cúcuta, Norte de Santander</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-blue-400 flex-shrink-0" />
@@ -134,8 +132,8 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                <a href="mailto:contacto@pcstyle.com" className="text-gray-400 hover:text-blue-400 transition-colors text-sm">
-                  contacto@pcstyle.com
+                <a href="mailto:pcstyle07@gmail.com" className="text-gray-400 hover:text-blue-400 transition-colors text-sm">
+                  pcstyle07@gmail.com
                 </a>
               </li>
             </ul>

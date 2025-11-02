@@ -21,8 +21,11 @@
     <meta name="geo.placename" content="Cúcuta">
     <meta name="geo.position" content="7.951568;-72.506822">
     
-    <!-- Canonical URL (añade tu dominio cuando lo tengas) -->
+    <!-- Canonical URL -->
     <link rel="canonical" href="https://pcstyle.com.co">
+    
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     
     <!-- Theme Color para móviles -->
     <meta name="theme-color" content="#1e293b">
@@ -90,7 +93,78 @@
         "Recuperación de Datos",
         "Servicio Técnico a Domicilio"
       ],
-      "openingHours": "Mo-Su 08:00-20:00"
+      "openingHours": "Mo-Su 08:00-20:00",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "4",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "María Camila"
+          },
+          "datePublished": "2024-12-15",
+          "reviewBody": "Excelente servicio, muy profesionales. Mi computadora quedó como nueva después del mantenimiento. Totalmente recomendado.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          }
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Juan Sebastián"
+          },
+          "datePublished": "2024-12-10",
+          "reviewBody": "Rápido, eficiente y con excelente atención al cliente. Solucionaron mi problema en el mismo día.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          }
+        }
+      ]
+    }
+    </script>
+    
+    <!-- Schema.org para FAQ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Ofrecen servicio a domicilio en Cúcuta?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, ofrecemos servicio técnico a domicilio en toda Cúcuta y alrededores. Contamos con técnicos certificados que se desplazan hasta tu ubicación."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo tarda una reparación?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El tiempo de reparación depende del problema. Reparaciones simples pueden resolverse el mismo día, mientras que problemas más complejos pueden tomar 2-3 días hábiles."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Dan garantía en las reparaciones?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, todas nuestras reparaciones incluyen garantía. El tiempo de garantía varía según el tipo de servicio, pero generalmente es de 30 a 90 días."
+          }
+        }
+      ]
     }
     </script>
     
