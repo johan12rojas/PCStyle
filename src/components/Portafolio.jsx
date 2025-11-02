@@ -5,6 +5,7 @@ import TechBackground from './TechBackground'
 
 const Portafolio = () => {
   const [selectedProject, setSelectedProject] = useState(null)
+  const [imageErrors, setImageErrors] = useState({})
 
   const proyectos = [
     {
@@ -150,26 +151,60 @@ const Portafolio = () => {
               whileHover={{ y: -10 }}
             >
               {/* Image background - sin overlay de color */}
-              <div className="h-48 relative overflow-hidden">
+              <div className="h-48 relative overflow-hidden bg-slate-700/50">
                 {proyecto.collage ? (
                   <div className="grid grid-cols-2 gap-1 h-full">
-                    {proyecto.images.map((img, idx) => (
-                      <img
-                        key={idx}
-                        src={img}
-                        alt={`${getAltText()} - Imagen ${idx + 1}`}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    ))}
+                    {proyecto.images.map((img, idx) => {
+                      const imageKey = `${index}-${idx}`
+                      const hasError = imageErrors[imageKey]
+                      
+                      if (hasError) {
+                        return (
+                          <div key={idx} className="w-full h-full flex items-center justify-center bg-slate-700 text-gray-400 text-xs p-2 text-center">
+                            Imagen no disponible
+                          </div>
+                        )
+                      }
+                      
+                      return (
+                        <img
+                          key={idx}
+                          src={img}
+                          alt={`${getAltText()} - Imagen ${idx + 1}`}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                          onError={() => {
+                            setImageErrors(prev => ({ ...prev, [imageKey]: true }))
+                          }}
+                        />
+                      )
+                    })}
                   </div>
                 ) : (
-                  <img
-                    src={proyecto.image}
-                    alt={getAltText()}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
+                  (() => {
+                    const imageKey = `${index}-main`
+                    const hasError = imageErrors[imageKey]
+                    
+                    if (hasError) {
+                      return (
+                        <div className="w-full h-full flex items-center justify-center bg-slate-700 text-gray-400 text-xs p-2 text-center">
+                          Imagen no disponible
+                        </div>
+                      )
+                    }
+                    
+                    return (
+                      <img
+                        src={proyecto.image}
+                        alt={getAltText()}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        onError={() => {
+                          setImageErrors(prev => ({ ...prev, [imageKey]: true }))
+                        }}
+                      />
+                    )
+                  })()
                 )}
                 
                 {/* Overlay sutil solo en hover */}
@@ -240,7 +275,7 @@ const Portafolio = () => {
 
               {/* Content */}
               <div className="p-4 sm:p-6 overflow-y-auto flex-1">
-                <div className="mb-4 sm:mb-6 rounded-xl overflow-hidden">
+                <div className="mb-4 sm:mb-6 rounded-xl overflow-hidden bg-slate-700/50">
                   {selectedProject.collage ? (
                     <div className="grid grid-cols-2 gap-2">
                       {selectedProject.images.map((img, idx) => {
@@ -252,6 +287,17 @@ const Portafolio = () => {
                               return `Técnico especializado realizando ${selectedProject.title.toLowerCase()} en Cúcuta - PCStyle servicio técnico profesional`;
                           }
                         };
+                        const modalImageKey = `modal-${selectedProject.id}-${idx}`
+                        const hasError = imageErrors[modalImageKey]
+                        
+                        if (hasError) {
+                          return (
+                            <div key={idx} className="w-full h-40 sm:h-48 lg:h-64 flex items-center justify-center bg-slate-700 text-gray-400 text-xs p-2 text-center">
+                              Imagen no disponible
+                            </div>
+                          )
+                        }
+                        
                         return (
                           <img
                             key={idx}
@@ -259,17 +305,38 @@ const Portafolio = () => {
                             alt={`${getModalAltText()} - Imagen detalle ${idx + 1}`}
                             className="w-full h-40 sm:h-48 lg:h-64 object-cover"
                             loading="lazy"
+                            onError={() => {
+                              setImageErrors(prev => ({ ...prev, [modalImageKey]: true }))
+                            }}
                           />
                         );
                       })}
                     </div>
                   ) : (
-                    <img
-                      src={selectedProject.image}
-                      alt={`Técnico de PCStyle ejecutando ${selectedProject.title.toLowerCase()} en computadora en Cúcuta - Reparación y mantenimiento de portátiles y PC`}
-                      className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-xl"
-                      loading="lazy"
-                    />
+                    (() => {
+                      const modalImageKey = `modal-${selectedProject.id}-main`
+                      const hasError = imageErrors[modalImageKey]
+                      
+                      if (hasError) {
+                        return (
+                          <div className="w-full h-64 sm:h-80 lg:h-96 flex items-center justify-center bg-slate-700 text-gray-400 text-xs p-2 text-center rounded-xl">
+                            Imagen no disponible
+                          </div>
+                        )
+                      }
+                      
+                      return (
+                        <img
+                          src={selectedProject.image}
+                          alt={`Técnico de PCStyle ejecutando ${selectedProject.title.toLowerCase()} en computadora en Cúcuta - Reparación y mantenimiento de portátiles y PC`}
+                          className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-xl"
+                          loading="lazy"
+                          onError={() => {
+                            setImageErrors(prev => ({ ...prev, [modalImageKey]: true }))
+                          }}
+                        />
+                      )
+                    })()
                   )}
                 </div>
                 
