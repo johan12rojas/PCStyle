@@ -8,6 +8,7 @@ import Servicios from './components/Servicios'
 import Portafolio from './components/Portafolio'
 import RedesSociales from './components/RedesSociales'
 import Opiniones from './components/Opiniones'
+import Nosotros from './components/Nosotros'
 import Contacto from './components/Contacto'
 import Footer from './components/Footer'
 import ChatWidget from './components/ChatWidget'
@@ -36,6 +37,7 @@ function App() {
       <Portafolio />
       <RedesSociales />
       <Opiniones />
+      <Nosotros />
       <Contacto />
       <Footer />
       <ChatWidget />

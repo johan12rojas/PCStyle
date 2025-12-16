@@ -57,8 +57,14 @@ const Contacto = () => {
     
     // Validación básica
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailPattern.test(formData.email)) {
+    // Validar email solo si está lleno o si el método de contacto es email
+    if (formData.email && !emailPattern.test(formData.email)) {
       setFormStatus({ type: 'error', message: 'Por favor, ingresa un email válido.' })
+      return
+    }
+    // Si el método es email, el email es obligatorio
+    if (contactMethod === 'email' && !formData.email) {
+      setFormStatus({ type: 'error', message: 'El email es obligatorio para este método de contacto.' })
       return
     }
 
@@ -66,15 +72,7 @@ const Contacto = () => {
 
     if (contactMethod === 'whatsapp') {
       // Envío por WhatsApp
-      const whatsappMessage = `¡Hola PCStyle! Me interesa su servicio:
-
-👤 *Nombre:* ${formData.name}
-📧 *Email:* ${formData.email}
-📱 *Teléfono:* ${formData.phone}
-🔧 *Servicio:* ${serviceName}
-💬 *Mensaje:* ${formData.message}
-
-¡Gracias!`
+      const whatsappMessage = `¡Hola PCStyle! Me interesa su servicio:\n\n👤 *Nombre:* ${formData.name}${formData.email ? `\n📧 *Email:* ${formData.email}` : ''}\n📱 *Teléfono:* ${formData.phone}\n🔧 *Servicio:* ${serviceName}\n💬 *Mensaje:* ${formData.message}\n\n¡Gracias!`
 
       // Codificar el mensaje para URL
       const encodedMessage = encodeURIComponent(whatsappMessage)
@@ -133,7 +131,7 @@ ${formData.name}`)
     {
       icon: MapPin,
       title: 'Ubicación',
-      content: 'Urbanización Monterosso, Manzana E casa 28 #An-60\nCúcuta, Norte de Santander, Colombia',
+      content: 'Urbanización Monterosso, Manzana E casa 28 #AN-60\nCúcuta, Norte de Santander, Colombia',
       color: 'from-blue-500 to-blue-600',
       link: null
     },
@@ -282,7 +280,7 @@ ${formData.name}`)
 
               <div>
                 <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-gray-300 mb-1.5 sm:mb-2">
-                  Email
+                  Email {contactMethod === 'whatsapp' && <span className="text-gray-500 text-xs">(opcional)</span>}
                 </label>
                 <input
                   type="email"
@@ -290,7 +288,7 @@ ${formData.name}`)
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
+                  required={contactMethod === 'email'}
                   className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-900 border border-slate-600 rounded-lg text-white text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="tu@email.com"
                 />
@@ -308,7 +306,7 @@ ${formData.name}`)
                   onChange={handleChange}
                   required
                   className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-900 border border-slate-600 rounded-lg text-white text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="322 5934970"
+                  placeholder="Ingresa tu número"
                 />
               </div>
 
@@ -485,7 +483,7 @@ ${formData.name}`)
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Ubicación PCStyle - Urbanización Monterosso, Manzana E casa 28 #An-60, Cúcuta"
+              title="Ubicación PCStyle - Urbanización Monterosso, Manzana E casa 28 #AN-60, Cúcuta"
               className="w-full sm:h-[350px] lg:h-[450px]"
             />
           </div>

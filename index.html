@@ -1,174 +1,282 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/IMG/logoblanco.png" />
-    <link rel="apple-touch-icon" href="/IMG/logoblanco.png" />
+    
+    <!-- Preconnect para mejor rendimiento -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Favicons para diferentes dispositivos -->
+    <link rel="icon" type="image/jpeg" href="/IMG/iconO.jpeg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/IMG/iconO.jpeg" />
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="/IMG/iconO.jpeg" />
+    <link rel="icon" type="image/jpeg" sizes="16x16" href="/IMG/iconO.jpeg" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <!-- Meta tags de seguridad -->
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
     <!-- SEO -->
-    <meta name="description" content="Servicio técnico de computadores en Cúcuta. Reparación de portátiles y PC, mantenimiento preventivo, instalación de programas y recuperación de datos. Servicio a domicilio en Cúcuta, Norte de Santander.">
-    <meta name="keywords" content="servicio técnico en Cúcuta, reparación de portátiles y PC, reparación computadoras Cúcuta, mantenimiento computadoras Cúcuta, técnico computadores Cúcuta, reparación laptops Cúcuta, servicio a domicilio Cúcuta, PCStyle Cúcuta">
-    <meta name="author" content="PCStyle">
-    <meta name="robots" content="index, follow">
-    <meta name="language" content="Spanish">
-    <meta name="geo.region" content="CO-NSA">
-    <meta name="geo.placename" content="Cúcuta">
-    <meta name="geo.position" content="7.951568;-72.506822">
-    
+    <meta
+      name="description"
+      content="¿Problemas con tu PC? 💻 PCStyle ofrece servicio técnico profesional en Cúcuta: reparación de portátiles, mantenimiento preventivo, recuperación de datos y más. ¡Servicio a domicilio! ☎️ 322 5934970. 5+ años de experiencia."
+    />
+    <meta
+      name="keywords"
+      content="servicio técnico en Cúcuta, reparación de portátiles y PC, reparación computadoras Cúcuta, mantenimiento computadoras Cúcuta, técnico computadores Cúcuta, reparación laptops Cúcuta, servicio a domicilio Cúcuta, PCStyle Cúcuta, reparación hardware Cúcuta, soporte técnico remoto, recuperación de datos Cúcuta, mantenimiento preventivo PC, instalación de programas Cúcuta, reparación tarjetas gráficas, reparación fuentes de poder"
+    />
+    <meta name="author" content="PCStyle" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="Spanish" />
+    <meta name="geo.region" content="CO-NSA" />
+    <meta name="geo.placename" content="Cúcuta" />
+    <meta name="geo.position" content="7.951568;-72.506822" />
+
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://pcstyle.com.co">
-    
+    <link rel="canonical" href="https://pcstyle.com.co" />
+
     <!-- Sitemap -->
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-    
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
     <!-- Theme Color para móviles -->
-    <meta name="theme-color" content="#1e293b">
-    <meta name="msapplication-TileColor" content="#1e293b">
-    
+    <meta name="theme-color" content="#1e293b" />
+    <meta name="msapplication-TileColor" content="#1e293b" />
+
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="PCStyle - Servicio Técnico de Computadores en Cúcuta">
-    <meta property="og:description" content="Servicio técnico profesional en mantenimiento y reparación de computadoras en Cúcuta. Reparación de portátiles, instalación de programas, recuperación de datos. Servicio a domicilio.">
-    <meta property="og:url" content="https://pcstyle.com.co">
-    <meta property="og:site_name" content="PCStyle">
-    <meta property="og:locale" content="es_CO">
-    <meta property="og:image" content="https://pcstyle.com.co/IMG/pcstyle.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="PCStyle - Servicio técnico de computadores en Cúcuta">
-    
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="PCStyle - Servicio Técnico de Computadores en Cúcuta"
+    />
+    <meta
+      property="og:description"
+      content="Servicio técnico profesional en mantenimiento y reparación de computadoras en Cúcuta. Reparación de portátiles, instalación de programas, recuperación de datos. Servicio a domicilio."
+    />
+    <meta property="og:url" content="https://pcstyle.com.co" />
+    <meta property="og:site_name" content="PCStyle" />
+    <meta property="og:locale" content="es_CO" />
+    <meta
+      property="og:image"
+      content="https://pcstyle.com.co/IMG/pcstyle.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="PCStyle - Servicio técnico de computadores en Cúcuta"
+    />
+
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="PCStyle - Servicio Técnico de Computadores en Cúcuta">
-    <meta name="twitter:description" content="Servicio técnico profesional en mantenimiento y reparación de computadoras en Cúcuta. Servicio a domicilio.">
-    <meta name="twitter:image" content="https://pcstyle.com.co/IMG/pcstyle.png">
-    <meta name="twitter:image:alt" content="PCStyle - Servicio técnico de computadores en Cúcuta">
-    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="PCStyle - Servicio Técnico de Computadores en Cúcuta"
+    />
+    <meta
+      name="twitter:description"
+      content="Servicio técnico profesional en mantenimiento y reparación de computadoras en Cúcuta. Servicio a domicilio."
+    />
+    <meta
+      name="twitter:image"
+      content="https://pcstyle.com.co/IMG/pcstyle.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="PCStyle - Servicio técnico de computadores en Cúcuta"
+    />
+
     <!-- Apple iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="PCStyle">
-    
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="PCStyle" />
+
     <!-- Microsoft -->
-    <meta name="application-name" content="PCStyle">
-    
+    <meta name="application-name" content="PCStyle" />
+
     <!-- Schema.org JSON-LD para datos estructurados -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "PCStyle",
-      "description": "Servicio técnico profesional en mantenimiento y reparación de computadoras en Cúcuta, Colombia",
-      "url": "https://pcstyle.com.co",
-      "telephone": "+573225934970",
-      "email": "pcstyle07@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Urbanización Monterosso, Manzana E casa 28 #An-60",
-        "addressLocality": "Cúcuta",
-        "addressRegion": "Norte de Santander",
-        "addressCountry": "CO"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "7.951568",
-        "longitude": "-72.506822"
-      },
-      "priceRange": "$$",
-      "areaServed": {
-        "@type": "City",
-        "name": "Cúcuta"
-      },
-      "serviceType": [
-        "Reparación de Computadoras",
-        "Mantenimiento de PC",
-        "Reparación de Portátiles",
-        "Instalación de Programas",
-        "Recuperación de Datos",
-        "Servicio Técnico a Domicilio"
-      ],
-      "openingHours": "Mo-Su 08:00-20:00",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5.0",
-        "reviewCount": "4",
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "review": [
-        {
-          "@type": "Review",
-          "author": {
-            "@type": "Person",
-            "name": "María Camila"
-          },
-          "datePublished": "2024-12-15",
-          "reviewBody": "Excelente servicio, muy profesionales. Mi computadora quedó como nueva después del mantenimiento. Totalmente recomendado.",
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          }
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "PCStyle",
+        "description": "Servicio técnico profesional en mantenimiento y reparación de computadoras en Cúcuta, Colombia",
+        "url": "https://pcstyle.com.co",
+        "logo": "https://pcstyle.com.co/IMG/pcstyle.png",
+        "image": "https://pcstyle.com.co/IMG/pcstyle.png",
+        "telephone": "+573225934970",
+        "email": "pcstyle07@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Urbanización Monterosso, Manzana E casa 28 #AN-60",
+          "addressLocality": "Cúcuta",
+          "addressRegion": "Norte de Santander",
+          "addressCountry": "CO"
         },
-        {
-          "@type": "Review",
-          "author": {
-            "@type": "Person",
-            "name": "Juan Sebastián"
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "7.951568",
+          "longitude": "-72.506822"
+        },
+        "priceRange": "$$",
+        "areaServed": {
+          "@type": "City",
+          "name": "Cúcuta"
+        },
+        "sameAs": [
+          "https://www.facebook.com/pcstylecol",
+          "https://www.instagram.com/pcstylecol/"
+        ],
+        "serviceType": [
+          "Reparación de Computadoras",
+          "Mantenimiento de PC",
+          "Reparación de Portátiles",
+          "Instalación de Programas",
+          "Recuperación de Datos",
+          "Servicio Técnico a Domicilio",
+          "Reparación de Hardware",
+          "Soporte Técnico Remoto"
+        ],
+        "openingHours": "Mo-Su 08:00-20:00",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "reviewCount": "4",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "review": [
+          {
+            "@type": "Review",
+            "author": {
+              "@type": "Person",
+              "name": "María Camila"
+            },
+            "datePublished": "2024-12-15",
+            "reviewBody": "Excelente servicio, muy profesionales. Mi computadora quedó como nueva después del mantenimiento. Totalmente recomendado.",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "5"
+            }
           },
-          "datePublished": "2024-12-10",
-          "reviewBody": "Rápido, eficiente y con excelente atención al cliente. Solucionaron mi problema en el mismo día.",
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
+          {
+            "@type": "Review",
+            "author": {
+              "@type": "Person",
+              "name": "Juan Sebastián"
+            },
+            "datePublished": "2024-12-10",
+            "reviewBody": "Rápido, eficiente y con excelente atención al cliente. Solucionaron mi problema en el mismo día.",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "5"
+            }
           }
-        }
-      ]
-    }
+        ]
+      }
     </script>
-    
+
+    <!-- Schema.org para Organización y Equipo -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "PCStyle",
+        "url": "https://pcstyle.com.co",
+        "logo": "https://pcstyle.com.co/IMG/pcstyle.png",
+        "description": "Servicio técnico profesional de computadores en Cúcuta",
+        "foundingDate": "2019",
+        "founder": {
+          "@type": "Person",
+          "name": "Alexander Rodríguez",
+          "jobTitle": "CEO y Fundador",
+          "description": "Electrónico – Tecnólogo en mantenimiento de equipos y redes"
+        },
+        "employee": [
+          {
+            "@type": "Person",
+            "name": "Alexander Rodríguez",
+            "jobTitle": "CEO y Fundador",
+            "description": "Especialista en diagnóstico, reparación y mantenimiento avanzado de computadores y equipos electrónicos"
+          },
+          {
+            "@type": "Person",
+            "name": "Sebastian Rojas",
+            "jobTitle": "Ingeniero de Sistemas",
+            "description": "Especialista en Desarrollo y Soporte Técnico"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Urbanización Monterosso, Manzana E casa 28 #AN-60",
+          "addressLocality": "Cúcuta",
+          "addressRegion": "Norte de Santander",
+          "postalCode": "540001",
+          "addressCountry": "CO"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+573225934970",
+          "contactType": "customer service",
+          "email": "pcstyle07@gmail.com",
+          "availableLanguage": "Spanish"
+        },
+        "sameAs": [
+          "https://www.facebook.com/pcstylecol",
+          "https://www.instagram.com/pcstylecol/"
+        ]
+      }
+    </script>
+
     <!-- Schema.org para FAQ -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "¿Ofrecen servicio a domicilio en Cúcuta?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sí, ofrecemos servicio técnico a domicilio en toda Cúcuta y alrededores. Contamos con técnicos certificados que se desplazan hasta tu ubicación."
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Ofrecen servicio a domicilio en Cúcuta?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, ofrecemos servicio técnico a domicilio en toda Cúcuta y alrededores. Contamos con técnicos certificados que se desplazan hasta tu ubicación."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuánto tiempo tarda una reparación?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "El tiempo de reparación depende del problema. Reparaciones simples pueden resolverse el mismo día, mientras que problemas más complejos pueden tomar 2-3 días hábiles."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Dan garantía en las reparaciones?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, todas nuestras reparaciones incluyen garantía. El tiempo de garantía varía según el tipo de servicio, pero generalmente es de 30 a 90 días."
+            }
           }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Cuánto tiempo tarda una reparación?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "El tiempo de reparación depende del problema. Reparaciones simples pueden resolverse el mismo día, mientras que problemas más complejos pueden tomar 2-3 días hábiles."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Dan garantía en las reparaciones?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sí, todas nuestras reparaciones incluyen garantía. El tiempo de garantía varía según el tipo de servicio, pero generalmente es de 30 a 90 días."
-          }
-        }
-      ]
-    }
+        ]
+      }
     </script>
-    
-    <title>PCStyle - Servicio Técnico de Computadores en Cúcuta | Reparación de Portátiles y PC</title>
+
+    <title>
+      PCStyle - Servicio Técnico de Computadores en Cúcuta | Reparación de
+      Portátiles y PC
+    </title>
   </head>
   <body>
     <div id="root"></div>

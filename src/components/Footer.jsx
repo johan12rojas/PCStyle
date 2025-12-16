@@ -18,6 +18,7 @@ const Footer = () => {
     empresa: [
       'Portafolio',
       'Opiniones',
+      'Nosotros',
       'Contacto',
     ],
   }
@@ -122,7 +123,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                <span className="text-gray-400 text-sm">Urbanización Monterosso, Manzana E casa 28 #An-60, Cúcuta, Norte de Santander</span>
+                <span className="text-gray-400 text-sm">Urbanización Monterosso, Manzana E casa 28 #AN-60, Cúcuta, Norte de Santander</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-blue-400 flex-shrink-0" />

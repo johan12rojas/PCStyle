@@ -1,0 +1,41 @@
+{
+  "name": "PCStyle - Servicio Técnico de Computadores",
+  "short_name": "PCStyle",
+  "description": "Servicio técnico profesional de computadores en Cúcuta. Reparación, mantenimiento y soporte técnico a domicilio.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#1e293b",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/IMG/iconO.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/IMG/iconO.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/IMG/pcstyle.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["business", "utilities"],
+  "lang": "es-CO",
+  "dir": "ltr",
+  "scope": "/",
+  "screenshots": [
+    {
+      "src": "/IMG/pcstyle.png",
+      "sizes": "1200x630",
+      "type": "image/png"
+    }
+  ]
+}
