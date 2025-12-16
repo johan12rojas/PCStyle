@@ -280,7 +280,7 @@ ${formData.name}`)
 
               <div>
                 <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-gray-300 mb-1.5 sm:mb-2">
-                  Email {contactMethod === 'whatsapp' && <span className="text-gray-500 text-xs">(opcional)</span>}
+                  Email {contactMethod === 'whatsapp' && <span className="text-gray-500 text-xs">(Opcional)</span>}
                 </label>
                 <input
                   type="email"
