@@ -107,9 +107,7 @@ const Nosotros = () => {
                   </p>
                 </div>
 
-                <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
-                  {member.shortDescription}
-                </p>
+
 
                 {/* Ver más button */}
                 <motion.button

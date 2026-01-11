@@ -212,10 +212,10 @@ const Opiniones = () => {
             {[...Array(5)].map((_, i) => (
               <Star key={i} className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 fill-yellow-400" />
             ))}
-            <span className="text-2xl sm:text-3xl font-bold text-white ml-2">4.9</span>
+            <span className="text-2xl sm:text-3xl font-bold text-white ml-2">5.0</span>
             <span className="text-gray-400 text-sm sm:text-base">de 5 estrellas</span>
           </div>
-          <p className="text-gray-400 text-sm sm:text-base">Más de 200+ reseñas verificadas</p>
+          <p className="text-gray-400 text-sm sm:text-base">Más de 331 reseñas verificadas</p>
         </motion.div>
       </div>
     </section>
