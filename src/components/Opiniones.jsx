@@ -215,7 +215,7 @@ const Opiniones = () => {
             <span className="text-2xl sm:text-3xl font-bold text-white ml-2">5.0</span>
             <span className="text-gray-400 text-sm sm:text-base">de 5 estrellas</span>
           </div>
-          <p className="text-gray-400 text-sm sm:text-base">Más de 331 reseñas verificadas</p>
+          <p className="text-gray-400 text-sm sm:text-base">+300 reseñas verificadas</p>
         </motion.div>
       </div>
     </section>

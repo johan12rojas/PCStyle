@@ -27,9 +27,9 @@
   "scope": "/",
   "screenshots": [
     {
-      "src": "/IMG/pcstyle.png",
-      "sizes": "1200x630",
-      "type": "image/png"
+      "src": "/iconO.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
     }
   ]
 }
