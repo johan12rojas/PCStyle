@@ -20,28 +20,44 @@ const ChatWidget = () => {
         <AnimatePresence>
           {!isOpen && (
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
-              className="bg-white text-slate-900 px-4 py-2 rounded-xl shadow-lg font-semibold text-sm relative hidden sm:block"
+              initial={{ opacity: 0, x: 20, scale: 0.8 }}
+              animate={{ 
+                opacity: 1, 
+                x: 0, 
+                scale: 1,
+                y: [0, -5, 0] 
+              }}
+              exit={{ opacity: 0, x: 20, scale: 0.8 }}
+              transition={{
+                y: {
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }
+              }}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-5 py-3 rounded-2xl shadow-xl font-bold text-sm relative hidden sm:flex items-center gap-2 border border-white/20"
             >
-              ¡Contáctanos ahora!
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-400"></span>
+              </span>
+              ¡Escríbenos, estamos en línea!
               {/* Arrow pointing to button */}
-              <div className="absolute top-1/2 -right-2 transform -translate-y-1/2 border-8 border-transparent border-l-white" />
+              <div className="absolute top-1/2 -right-2 transform -translate-y-1/2 border-8 border-transparent border-l-purple-600" />
             </motion.div>
           )}
         </AnimatePresence>
 
         {/* Chat Button with Image */}
         <motion.button
-          className="w-16 h-16 rounded-full flex items-center justify-center shadow-2xl z-50 relative group"
+          className="w-16 h-16 rounded-full flex items-center justify-center shadow-2xl z-50 relative group bg-white p-0.5"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => setIsOpen(!isOpen)}
         >
           {/* Notification badge with blinking */}
           <motion.span
-            className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-xs text-white font-bold z-20 border-2 border-slate-900"
+            className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-xs text-white font-bold z-20 border-2 border-slate-900 shadow-sm"
             animate={{ 
               scale: [1, 1.2, 1],
             }}
@@ -50,10 +66,10 @@ const ChatWidget = () => {
             1
           </motion.span>
           
-          <div className="w-full h-full rounded-full overflow-hidden border-2 border-green-500 hover:border-green-400 transition-colors">
+          <div className="w-full h-full rounded-full overflow-hidden border-2 border-green-500 hover:border-green-400 transition-colors bg-white">
             <img 
               src="/IMG/wpI.webp" 
-              alt="WhatsApp y Soporte" 
+              alt="Chat WhatsApp" 
               className="w-full h-full object-cover"
             />
           </div>
