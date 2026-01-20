@@ -131,13 +131,14 @@ const Nosotros = () => {
               </div>
 
               {/* Expanded Content */}
-              <AnimatePresence>
+              <AnimatePresence mode="wait">
                 {expandedCard === member.id && (
                   <motion.div
+                    key={`expanded-${member.id}`}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="border-t border-slate-700/50 overflow-hidden"
                   >
                     <div className="p-6 sm:p-8 space-y-6">
