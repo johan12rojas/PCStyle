@@ -10,6 +10,7 @@ Allow: /*.css
 
 # Bloquear archivos innecesarios
 Disallow: /node_modules/
+Allow: /manifest.json
 Disallow: /*.json$
 Disallow: /*?*
 
