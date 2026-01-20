@@ -72,7 +72,7 @@ const Nosotros = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 max-w-6xl mx-auto items-start">
           {teamMembers.map((member, index) => (
             <motion.div
               key={member.id}
