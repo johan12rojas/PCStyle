@@ -1,161 +1,154 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { Facebook, Instagram, Phone, Mail, MapPin } from 'lucide-react'
 import TechBackground from './TechBackground'
 
+const SOCIAL_LINKS = [
+  { icon: Facebook, href: 'https://www.facebook.com/pcstylecol/?locale=es_LA', name: 'Facebook' },
+  { icon: Instagram, href: 'https://www.instagram.com/pcstylecol/', name: 'Instagram' },
+]
+
+const FOOTER_LINKS = {
+  servicios: [
+    { name: 'Reparación de Hardware', href: '#servicios' },
+    { name: 'Mantenimiento Preventivo', href: '#servicios' },
+    { name: 'Actualización de Componentes', href: '#servicios' },
+    { name: 'Eliminación de Virus', href: '#servicios' },
+    { name: 'Diseño y Desarrollo Web', href: '#desarrollo-web' },
+  ],
+  empresa: [
+    { name: 'Diseño Web', href: '#desarrollo-web' },
+    { name: 'Portafolio', href: '#portafolio' },
+    { name: 'Opiniones', href: '#opiniones' },
+    { name: 'Nosotros', href: '#nosotros' },
+    { name: 'Preguntas Frecuentes', href: '#preguntas-frecuentes' },
+    { name: 'Contacto', href: '#contacto' },
+  ],
+}
+
 const Footer = () => {
-  const socialLinks = [
-    { icon: Facebook, href: 'https://www.facebook.com/pcstylecol/?locale=es_LA', name: 'Facebook' },
-    { icon: Instagram, href: 'https://www.instagram.com/pcstylecol/', name: 'Instagram' },
-  ]
-
-  const footerLinks = {
-    servicios: [
-      'Reparación de Hardware',
-      'Mantenimiento Preventivo',
-      'Actualización de Componentes',
-      'Eliminación de Virus',
-    ],
-    empresa: [
-      'Portafolio',
-      'Opiniones',
-      'Nosotros',
-      'Contacto',
-    ],
-  }
-
   return (
-    <footer className="bg-slate-950 py-12 border-t border-slate-800 relative overflow-hidden">
-      {/* Tech Background */}
+    <footer className="section-defer bg-slate-950 py-12 border-t border-slate-800 relative overflow-hidden">
       <TechBackground />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <m.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8"
+        >
           {/* Company Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <div>
             <div className="flex items-center space-x-3 mb-4">
-              <img 
-                src="/IMG/pcstyle.png" 
-                alt="PCStyle Logo" 
+              <img
+                src="/IMG/pcstyle.png"
+                alt="PCStyle Logo"
+                width="84"
+                height="40"
+                loading="lazy"
+                decoding="async"
                 className="h-10 w-auto object-contain"
               />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-4">
-              Expertos en reparación y mantenimiento de computadoras en Cúcuta, Colombia.
+              El mejor servicio técnico de computadores, portátiles y diseño web con SEO en Cúcuta,
+              Norte de Santander y toda la región.
             </p>
             <div className="flex space-x-4">
-              {socialLinks.map((social, index) => {
+              {SOCIAL_LINKS.map((social) => {
                 const Icon = social.icon
                 return (
-                  <motion.a
-                    key={index}
+                  <a
+                    key={social.name}
                     href={social.href}
-                    target={social.href !== '#' ? "_blank" : undefined}
-                    rel={social.href !== '#' ? "noopener noreferrer" : undefined}
-                    className="w-10 h-10 bg-slate-800 hover:bg-gradient-to-br hover:from-blue-500 hover:to-purple-600 rounded-lg flex items-center justify-center transition-all duration-300"
-                    whileHover={{ scale: 1.1, rotate: 360 }}
-                    whileTap={{ scale: 0.9 }}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-slate-800 hover:bg-gradient-to-br hover:from-blue-500 hover:to-purple-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 text-gray-400 hover:text-white"
                     aria-label={social.name}
                   >
-                    <Icon className="w-5 h-5 text-gray-400 hover:text-white transition-colors" />
-                  </motion.a>
+                    <Icon className="w-5 h-5" />
+                  </a>
                 )
               })}
             </div>
-          </motion.div>
+          </div>
 
           {/* Servicios */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <h4 className="text-white font-semibold mb-4">Servicios</h4>
+          <div>
+            <h2 className="text-white font-semibold mb-4 text-base">Servicios</h2>
             <ul className="space-y-2">
-              {footerLinks.servicios.map((link, index) => (
-                <li key={index}>
+              {FOOTER_LINKS.servicios.map((link) => (
+                <li key={link.name}>
                   <a
-                    href="#servicios"
+                    href={link.href}
                     className="text-gray-400 hover:text-blue-400 transition-colors text-sm"
                   >
-                    {link}
+                    {link.name}
                   </a>
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
           {/* Empresa */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <h4 className="text-white font-semibold mb-4">Empresa</h4>
+          <div>
+            <h2 className="text-white font-semibold mb-4 text-base">Empresa</h2>
             <ul className="space-y-2">
-              {footerLinks.empresa.map((link, index) => (
-                <li key={index}>
+              {FOOTER_LINKS.empresa.map((link) => (
+                <li key={link.name}>
                   <a
-                    href={`#${link.toLowerCase()}`}
+                    href={link.href}
                     className="text-gray-400 hover:text-blue-400 transition-colors text-sm"
                   >
-                    {link}
+                    {link.name}
                   </a>
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
           {/* Contacto */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <h4 className="text-white font-semibold mb-4">Contacto</h4>
+          <div>
+            <h2 className="text-white font-semibold mb-4 text-base">Contacto</h2>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                <span className="text-gray-400 text-sm">Urbanización Monterosso, Manzana E casa 28 #AN-60, Cúcuta, Norte de Santander</span>
+                <span className="text-gray-400 text-sm">
+                  Urbanización Monterosso, Manzana E casa 28 #AN-60, Cúcuta, Norte de Santander
+                </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                <a href="tel:+573225934970" className="text-gray-400 hover:text-blue-400 transition-colors text-sm">
+                <a
+                  href="tel:+573225934970"
+                  className="text-gray-400 hover:text-blue-400 transition-colors text-sm"
+                >
                   322 5934970
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                <a href="mailto:pcstyle07@gmail.com" className="text-gray-400 hover:text-blue-400 transition-colors text-sm">
+                <a
+                  href="mailto:pcstyle07@gmail.com"
+                  className="text-gray-400 hover:text-blue-400 transition-colors text-sm"
+                >
                   pcstyle07@gmail.com
                 </a>
               </li>
             </ul>
-          </motion.div>
-        </div>
+          </div>
+        </m.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="border-t border-slate-800 pt-8 text-center"
-        >
+        <div className="border-t border-slate-800 pt-8 text-center">
           <p className="text-gray-400 text-sm">
-            &copy; {new Date().getFullYear()} PCStyle. Todos los derechos reservados. | Cúcuta, Colombia
+            &copy; {new Date().getFullYear()} PCStyle. Todos los derechos reservados. | Cúcuta, Norte
+            de Santander · Líderes en la Región
           </p>
-        </motion.div>
+        </div>
       </div>
     </footer>
   )
 }
 
 export default Footer
-

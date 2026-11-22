@@ -1,206 +1,292 @@
-import { motion } from 'framer-motion'
-import { Camera, Instagram, Facebook } from 'lucide-react'
+import { m } from 'framer-motion'
+import {
+  Camera,
+  Instagram,
+  Facebook,
+  Globe,
+  ThumbsUp,
+  MessageCircle,
+  Share2,
+  ExternalLink,
+} from 'lucide-react'
 import TechBackground from './TechBackground'
 
+const FACEBOOK_PAGE_URL = 'https://www.facebook.com/pcstylecol/?locale=es_LA'
+
+// Configuración de la última publicación mostrada en el mockup
+const LATEST_POST = {
+  author: 'PCStyle - Servicio técnico',
+  location: 'Cúcuta',
+  date: '28 de julio',
+  url: 'https://www.facebook.com/pcstylecol/posts/pfbid02TtXBT8sYzargzJesL78GTxWY6QXND1wJZDyJ5cGHPTiMf5pmeEvW62XqXETuWqJyl',
+  image: '/IMG/fb-ultima-publicacion.jpg',
+  imageAlt:
+    'Última publicación de PCStyle en Facebook: soporte técnico profesional para PC y laptops en Cúcuta',
+  caption: [
+    '¿Tu computador anda lento o con fallas? ¡Es momento de darle un respiro!',
+    'Ofrezco servicio técnico y mantenimiento para que funcione como nuevo ⚙️ No esperes a que muera del todo. Consultas sin compromiso, ¡escríbeme!',
+  ],
+  shares: '19 veces compartido',
+}
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: 'easeOut' },
+  },
+}
+
 const RedesSociales = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { duration: 0.6, ease: 'easeOut' }
-    }
-  }
-
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-slate-900 relative overflow-hidden">
-      {/* Tech Background */}
+    <section className="section-defer py-16 sm:py-20 lg:py-24 bg-slate-900 relative overflow-hidden">
       <TechBackground />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
+        <m.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
+          viewport={{ once: true, amount: 0.15 }}
           className="max-w-7xl mx-auto"
         >
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
             {/* Lado Izquierdo - Texto y Botones */}
-            <motion.div variants={itemVariants} className="text-center lg:text-left order-2 lg:order-1">
+            <m.div variants={itemVariants} className="text-center lg:text-left order-2 lg:order-1">
               {/* Camera Icon */}
-              <motion.div
-                className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto lg:mx-0 mb-4 sm:mb-6 shadow-lg"
-                whileHover={{ rotate: 360, scale: 1.1 }}
-                transition={{ duration: 0.6 }}
-              >
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto lg:mx-0 mb-4 sm:mb-6 shadow-lg transition-transform duration-500 hover:rotate-12 hover:scale-110">
                 <Camera className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
-              </motion.div>
+              </div>
 
               {/* Title */}
-              <motion.h2
-                variants={itemVariants}
-                className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 px-2 sm:px-0"
-              >
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 px-2 sm:px-0">
                 ¿Quieres ver más trabajos?
-              </motion.h2>
+              </h2>
 
               {/* Description */}
-              <motion.p
-                variants={itemVariants}
-                className="text-gray-400 text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed px-2 sm:px-0 max-w-xl mx-auto lg:mx-0"
-              >
-                Síguenos en nuestras redes sociales para ver actualizaciones constantes de nuestros mantenimientos
-              </motion.p>
+              <p className="text-gray-400 text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed px-2 sm:px-0 max-w-xl mx-auto lg:mx-0">
+                Síguenos en nuestras redes sociales para ver actualizaciones constantes de nuestros
+                mantenimientos
+              </p>
 
               {/* Buttons */}
-              <motion.div
-                variants={itemVariants}
-                className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start px-2 sm:px-0"
-              >
-                {/* Instagram Button */}
-                <motion.a
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start px-2 sm:px-0">
+                <a
                   href="https://www.instagram.com/pcstylecol/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative bg-gradient-to-r from-pink-500 via-purple-500 to-pink-600 hover:from-pink-600 hover:via-purple-600 hover:to-pink-700 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 shadow-lg shadow-pink-500/50 flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap"
-                  whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(236, 72, 153, 0.5)' }}
-                  whileTap={{ scale: 0.95 }}
+                  className="group relative bg-gradient-to-r from-pink-500 via-purple-500 to-pink-600 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 shadow-lg shadow-pink-500/40 hover:shadow-pink-500/60 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap"
                 >
-                  <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
-                  <span>Ver en Instagram</span>
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-500"
-                    initial={{ x: '-100%' }}
-                    whileHover={{ x: 0 }}
-                    transition={{ duration: 0.3 }}
+                  <span className="relative z-10 flex items-center gap-2">
+                    <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span>Ver en Instagram</span>
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-500 -translate-x-full group-hover:translate-x-0 transition-transform duration-300"
                   />
-                </motion.a>
+                </a>
 
-                {/* Facebook Button */}
-                <motion.a
-                  href="https://www.facebook.com/pcstylecol/?locale=es_LA"
+                <a
+                  href={FACEBOOK_PAGE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative bg-blue-600 hover:bg-blue-700 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 shadow-lg shadow-blue-500/50 flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap"
-                  whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(59, 130, 246, 0.5)' }}
-                  whileTap={{ scale: 0.95 }}
+                  className="group relative bg-blue-600 hover:bg-blue-700 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 shadow-lg shadow-blue-500/40 hover:shadow-blue-500/60 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap"
                 >
                   <Facebook className="w-4 h-4 sm:w-5 sm:h-5" />
                   <span>Ver en Facebook</span>
-                  <motion.div
-                    className="absolute inset-0 bg-blue-700"
-                    initial={{ x: '-100%' }}
-                    whileHover={{ x: 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </motion.a>
-              </motion.div>
-            </motion.div>
+                </a>
+              </div>
+            </m.div>
 
-            {/* Lado Derecho - iPhone Mockup con Facebook */}
-            <motion.div variants={itemVariants} className="lg:h-full flex items-center justify-center w-full order-1 lg:order-2 mb-6 lg:mb-0">
-              <motion.div 
-                className="relative"
-                whileHover={{ scale: 1.05, y: -10 }}
-                transition={{ duration: 0.3 }}
-              >
-                {/* Glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-pink-500/20 via-purple-500/20 to-blue-500/20 blur-3xl rounded-full -z-10" />
-                
-                {/* iPhone Frame */}
-                <div className="relative w-full max-w-[320px] sm:max-w-[360px] mx-auto">
-                  {/* iPhone Outer Frame */}
-                  <div className="bg-gradient-to-b from-gray-800 via-gray-700 to-gray-800 rounded-[3rem] p-2 shadow-2xl">
-                    {/* iPhone Screen Border */}
-                    <div className="bg-black rounded-[2.5rem] p-2 shadow-inner">
-                      {/* Notch */}
-                      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-[120px] h-7 bg-black rounded-full z-20" />
-                      
-                      {/* Screen Content */}
-                      <div className="bg-white rounded-[2rem] overflow-hidden relative">
-                        {/* Status Bar */}
-                        <div className="bg-white pt-8 pb-2 px-6 flex items-center justify-between text-black text-xs font-semibold">
+            {/* Lado Derecho - Mockup de celular con la última publicación limpia */}
+            <m.div
+              variants={itemVariants}
+              className="lg:h-full flex items-center justify-center w-full order-1 lg:order-2 mb-6 lg:mb-0"
+            >
+              <div className="relative transition-transform duration-300 hover:scale-[1.01] hover:-translate-y-1">
+                {/* Glow radial sutil */}
+                <div
+                  aria-hidden="true"
+                  className="absolute -inset-8 rounded-full -z-10 pointer-events-none"
+                  style={{
+                    background:
+                      'radial-gradient(circle, rgba(59,130,246,0.16) 0%, rgba(139,92,246,0.12) 45%, transparent 72%)',
+                  }}
+                />
+
+                {/* Phone Frame */}
+                <div className="relative w-[310px] sm:w-[344px] mx-auto">
+                  <div className="bg-gradient-to-b from-gray-800 via-gray-700 to-gray-800 rounded-[2.8rem] p-2 shadow-2xl">
+                    <div className="bg-black rounded-[2.3rem] p-2 shadow-inner">
+                      {/* Cámara superior discreta */}
+                      <div className="absolute top-4 left-1/2 -translate-x-1/2 w-[96px] h-5 bg-black rounded-full z-20" />
+
+                      <div className="bg-white rounded-[1.85rem] overflow-hidden relative text-gray-900">
+                        {/* Barra de estado */}
+                        <div className="bg-white pt-6 pb-1.5 px-5 flex items-center justify-between text-black text-[11px] font-semibold">
                           <span>9:41</span>
-                          <div className="flex items-center gap-1">
+                          <div className="flex items-center gap-1.5">
                             <div className="flex gap-0.5">
                               <div className="w-1 h-1 bg-black rounded-full" />
                               <div className="w-1 h-1 bg-black rounded-full" />
                               <div className="w-1 h-1 bg-black/30 rounded-full" />
                             </div>
-                            <div className="w-6 h-3 border border-black rounded-sm">
-                              <div className="w-[70%] h-full bg-green-500 rounded-sm" />
+                            <div className="w-5 h-2.5 border border-black rounded-sm p-[1px]">
+                              <div className="w-[75%] h-full bg-green-500 rounded-[1px]" />
                             </div>
                           </div>
                         </div>
 
-                        {/* Facebook Widget */}
-                        <div className="bg-gray-50 min-h-[530px] overflow-hidden">
-                          {/* Facebook Header */}
-                          <div className="bg-blue-600 px-3 py-2 flex items-center justify-between shadow-sm">
-                            <div className="flex items-center gap-2">
-                              <Facebook className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                              <span className="text-white font-semibold text-xs sm:text-sm">Facebook</span>
+                        {/* Barra superior Facebook */}
+                        <div className="bg-[#1877F2] px-3.5 py-2 flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <Facebook className="w-4 h-4 text-white fill-white/10" />
+                            <span className="text-white font-semibold text-xs tracking-wide">
+                              Facebook
+                            </span>
+                          </div>
+                          <a
+                            href={FACEBOOK_PAGE_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[11px] font-semibold text-white bg-white/15 hover:bg-white/25 px-2.5 py-0.5 rounded-full transition-colors"
+                          >
+                            Seguir página
+                          </a>
+                        </div>
+
+                        {/* Tarjeta nativa de publicación (encabezado, texto e imagen separados sin montarse) */}
+                        <article className="bg-white">
+                          {/* Encabezado de la publicación */}
+                          <div className="px-3.5 pt-3 pb-2 flex items-center justify-between gap-2">
+                            <div className="flex items-center gap-2.5 min-w-0">
+                              <img
+                                src="/IMG/iconO.jpeg"
+                                alt="PCStyle"
+                                className="w-9 h-9 rounded-full object-cover border border-gray-200 flex-shrink-0"
+                              />
+                              <div className="min-w-0">
+                                <a
+                                  href={FACEBOOK_PAGE_URL}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="block text-xs font-bold text-gray-900 hover:underline truncate"
+                                >
+                                  {LATEST_POST.author}
+                                </a>
+                                <div className="flex items-center gap-1 text-[11px] text-gray-500">
+                                  <span>{LATEST_POST.date}</span>
+                                  <span>·</span>
+                                  <span>{LATEST_POST.location}</span>
+                                  <span>·</span>
+                                  <Globe className="w-3 h-3 text-gray-400" />
+                                </div>
+                              </div>
                             </div>
+                            <a
+                              href={LATEST_POST.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="Abrir publicación en Facebook"
+                              className="text-gray-400 hover:text-[#1877F2] p-1 transition-colors flex-shrink-0"
+                            >
+                              <ExternalLink className="w-3.5 h-3.5" />
+                            </a>
                           </div>
 
-                          {/* Facebook Content Area */}
-                          <div className="p-0 h-[480px] sm:h-[500px] overflow-hidden">
-                            <iframe
-                              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fpcstylecol&tabs=timeline&width=320&height=480&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId"
-                              width="100%"
-                              height="480"
-                              style={{ border: 'none', overflow: 'hidden' }}
-                              scrolling="no"
-                              frameBorder="0"
-                              allowFullScreen={true}
-                              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                              title="Facebook PCStyle"
+                          {/* Texto de la publicación */}
+                          <div className="px-3.5 pb-2.5 space-y-1 text-[12px] leading-snug text-gray-800">
+                            {LATEST_POST.caption.map((line, idx) => (
+                              <p key={idx}>{line}</p>
+                            ))}
+                          </div>
+
+                          {/* Imagen limpia sin textos montados encima */}
+                          <a
+                            href={LATEST_POST.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group relative block bg-slate-950 overflow-hidden border-y border-gray-100"
+                          >
+                            <img
+                              src={LATEST_POST.image}
+                              alt={LATEST_POST.imageAlt}
+                              loading="lazy"
+                              className="w-full h-auto block object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                             />
+                          </a>
+
+                          {/* Contador y barra de acciones */}
+                          <div className="px-3.5 py-1.5 flex items-center justify-between text-[11px] text-gray-500 border-b border-gray-100">
+                            <span>171 seguidores</span>
+                            <span>{LATEST_POST.shares}</span>
                           </div>
-                        </div>
+
+                          <div className="grid grid-cols-3 divide-x divide-gray-100 text-[11px] font-semibold text-gray-600">
+                            <a
+                              href={LATEST_POST.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="py-2.5 flex items-center justify-center gap-1.5 hover:bg-gray-50 hover:text-[#1877F2] transition-colors"
+                            >
+                              <ThumbsUp className="w-3.5 h-3.5" />
+                              <span>Me gusta</span>
+                            </a>
+                            <a
+                              href={LATEST_POST.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="py-2.5 flex items-center justify-center gap-1.5 hover:bg-gray-50 hover:text-[#1877F2] transition-colors"
+                            >
+                              <MessageCircle className="w-3.5 h-3.5" />
+                              <span>Comentar</span>
+                            </a>
+                            <a
+                              href={LATEST_POST.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="py-2.5 flex items-center justify-center gap-1.5 hover:bg-gray-50 hover:text-[#1877F2] transition-colors"
+                            >
+                              <Share2 className="w-3.5 h-3.5" />
+                              <span>Compartir</span>
+                            </a>
+                          </div>
+                        </article>
                       </div>
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Call to Action */}
-                <motion.div
-                  className="text-center mt-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5 }}
-                >
-                  <motion.a
-                    href="https://www.facebook.com/pcstylecol/?locale=es_LA"
+                <div className="text-center mt-5">
+                  <a
+                    href={LATEST_POST.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block text-blue-400 hover:text-blue-300 text-sm font-semibold transition-colors"
-                    whileHover={{ scale: 1.05 }}
+                    className="inline-block text-blue-400 hover:text-blue-300 text-sm font-semibold transition-all duration-200 hover:scale-105"
                   >
-                    Ver más en Facebook →
-                  </motion.a>
-                </motion.div>
-              </motion.div>
-            </motion.div>
+                    Ver publicación en Facebook →
+                  </a>
+                </div>
+              </div>
+            </m.div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )
 }
 
 export default RedesSociales
-

@@ -6,11 +6,11 @@
   * {
     @apply antialiased;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     @apply bg-slate-900 text-white overflow-x-hidden;
   }
@@ -20,15 +20,181 @@
   .text-gradient {
     @apply bg-gradient-to-r from-blue-400 via-purple-400 to-blue-600 bg-clip-text text-transparent;
   }
-  
+
   .glass {
     @apply backdrop-blur-md bg-white/5 border border-white/10;
   }
-  
+
   .card-hover {
-    @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20;
+    @apply transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20;
+  }
+
+  /* Permite al navegador omitir layout/paint de secciones fuera de pantalla */
+  .section-defer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 720px;
   }
 }
 
+/* Animaciones GPU-composited (solo transform y opacity) para reemplazar bucles JS */
+@keyframes techGlow {
+  0%, 100% {
+    transform: scale(1) translateZ(0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(1.22) translateZ(0);
+    opacity: 0.65;
+  }
+}
 
+@keyframes techParticle {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translate3d(var(--tx, 0px), -26px, 0) scale(1.4);
+    opacity: 0.9;
+  }
+}
 
+@keyframes techLineFade {
+  0%, 100% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes heroScrollOuter {
+  0%, 100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  50% {
+    transform: translate3d(-50%, 8px, 0);
+  }
+}
+
+@keyframes heroScrollDot {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate3d(0, 12px, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes chatFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -5px, 0);
+  }
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.16);
+  }
+}
+
+@keyframes nebulaCloud {
+  0%, 100% {
+    transform: translate3d(-6px, 4px, 0) scale(0.96);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate3d(8px, -6px, 0) scale(1.08);
+    opacity: 0.95;
+  }
+}
+
+@keyframes nebulaCloudAlt {
+  0%, 100% {
+    transform: translate3d(8px, -4px, 0) scale(1.05);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate3d(-8px, 6px, 0) scale(0.95);
+    opacity: 0.85;
+  }
+}
+
+.animate-nebula-cloud {
+  animation: nebulaCloud 9s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-nebula-cloud-alt {
+  animation: nebulaCloudAlt 12s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-tech-glow {
+  animation: techGlow 8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-tech-glow-slow {
+  animation: techGlow 11s ease-in-out 1.5s infinite;
+  will-change: transform, opacity;
+}
+
+.animate-tech-particle {
+  animation: techParticle var(--dur, 4s) ease-in-out var(--delay, 0s) infinite;
+  will-change: transform, opacity;
+}
+
+.animate-tech-line {
+  animation: techLineFade var(--dur, 4s) ease-in-out var(--delay, 0s) infinite;
+}
+
+.animate-hero-scroll {
+  animation: heroScrollOuter 2s ease-in-out infinite;
+}
+
+.animate-hero-scroll-dot {
+  animation: heroScrollDot 1.5s ease-in-out infinite;
+}
+
+.animate-chat-float {
+  animation: chatFloat 2.4s ease-in-out infinite;
+}
+
+.animate-badge-pulse {
+  animation: badgePulse 1.8s ease-in-out infinite;
+}
+
+/* Pausar animaciones CSS cuando el contenedor está fuera del viewport */
+.anim-paused,
+.anim-paused * {
+  animation-play-state: paused !important;
+}
+
+/* Respetar preferencia del usuario para reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-nebula-cloud,
+  .animate-nebula-cloud-alt,
+  .animate-tech-glow,
+  .animate-tech-glow-slow,
+  .animate-tech-particle,
+  .animate-tech-line,
+  .animate-hero-scroll,
+  .animate-hero-scroll-dot,
+  .animate-chat-float,
+  .animate-badge-pulse {
+    animation: none !important;
+  }
+}

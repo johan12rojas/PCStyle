@@ -1,46 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+>
   <url>
     <loc>https://pcstyle.com.co/</loc>
-    <lastmod>2025-12-16</lastmod>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://pcstyle.com.co/#inicio</loc>
-    <lastmod>2025-12-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://pcstyle.com.co/#servicios</loc>
-    <lastmod>2025-12-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://pcstyle.com.co/#portafolio</loc>
-    <lastmod>2025-12-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pcstyle.com.co/#opiniones</loc>
-    <lastmod>2025-12-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://pcstyle.com.co/#nosotros</loc>
-    <lastmod>2025-12-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pcstyle.com.co/#contacto</loc>
-    <lastmod>2025-12-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://pcstyle.com.co/IMG/pcstyle.png</image:loc>
+      <image:title>PCStyle - El Mejor Servicio Técnico de Computadores en Cúcuta y la Región</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pcstyle.com.co/IMG/i7.webp</image:loc>
+      <image:title>Mantenimiento y reparación profesional de computadores en Cúcuta y Norte de Santander</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pcstyle.com.co/IMG/ensamblaje.webp</image:loc>
+      <image:title>Ensamblaje de computadores personalizados en Cúcuta y la región - PCStyle</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pcstyle.com.co/IMG/reparacion_mother.webp</image:loc>
+      <image:title>Reparación electrónica de motherboard y hardware en Cúcuta y Norte de Santander</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pcstyle.com.co/IMG/web-plan-corporativo.jpg</image:loc>
+      <image:title>Creación de páginas web corporativas con posicionamiento SEO en Cúcuta y la región</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pcstyle.com.co/IMG/web-plan-landing.jpg</image:loc>
+      <image:title>Creación de landing pages profesionales con SEO en Cúcuta y Norte de Santander</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pcstyle.com.co/IMG/web-plan-medida.jpg</image:loc>
+      <image:title>Desarrollo y creación de páginas web a medida en Cúcuta y la región - PCStyle</image:title>
+    </image:image>
   </url>
 </urlset>
-
