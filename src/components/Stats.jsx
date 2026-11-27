@@ -18,7 +18,7 @@ const STATS = [
   {
     icon: Award,
     value: '6+ años',
-    label: 'Experiencia · Top #1',
+    label: 'Experiencia',
     color: 'from-green-500 to-green-600',
   },
 ]
