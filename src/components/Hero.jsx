@@ -118,13 +118,13 @@ const Hero = () => {
               <span className="block text-white">Servicio Técnico</span>
               <span className="block text-gradient">de Computadores</span>
               <span className="block text-white/95 text-xl sm:text-2xl lg:text-3xl xl:text-[2.1rem] font-semibold mt-1.5">
-                y Páginas Web en la Región
+                en Cúcuta · Portátiles y PC
               </span>
             </h1>
 
             <p className="text-sm sm:text-base md:text-lg text-gray-300 mb-3 sm:mb-4 max-w-xl mx-auto lg:mx-0 leading-relaxed px-2 sm:px-0">
-              Reparación de portátiles, PC a domicilio, creación de páginas web con SEO y garantía
-              real.
+              Reparación de portátiles, mantenimiento preventivo de PC a domicilio, recuperación de
+              datos y garantía real.
             </p>
             <p className="inline-flex items-center justify-center lg:justify-start gap-1.5 text-xs sm:text-sm md:text-base text-blue-400 mb-7 sm:mb-8 font-medium px-2 sm:px-0">
               <MapPin className="w-4 h-4 flex-shrink-0 text-blue-400" />

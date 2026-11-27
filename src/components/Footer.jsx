@@ -9,23 +9,30 @@ const SOCIAL_LINKS = [
 
 const FOOTER_LINKS = {
   servicios: [
-    { name: 'Reparación de Hardware', href: '#servicios' },
-    { name: 'Mantenimiento Preventivo', href: '#servicios' },
-    { name: 'Actualización de Componentes', href: '#servicios' },
-    { name: 'Eliminación de Virus', href: '#servicios' },
-    { name: 'Diseño y Desarrollo Web', href: '#desarrollo-web' },
+    { name: 'Reparación de Hardware', href: '/#servicios' },
+    { name: 'Mantenimiento Preventivo', href: '/#servicios' },
+    { name: 'Actualización de Componentes', href: '/#servicios' },
+    { name: 'Eliminación de Virus', href: '/#servicios' },
+    { name: 'Diseño y Desarrollo Web', href: '/#desarrollo-web' },
   ],
   empresa: [
-    { name: 'Diseño Web', href: '#desarrollo-web' },
-    { name: 'Portafolio', href: '#portafolio' },
-    { name: 'Opiniones', href: '#opiniones' },
-    { name: 'Nosotros', href: '#nosotros' },
-    { name: 'Preguntas Frecuentes', href: '#preguntas-frecuentes' },
-    { name: 'Contacto', href: '#contacto' },
+    { name: 'Blog Técnico', href: '/blog' },
+    { name: 'Diseño Web', href: '/#desarrollo-web' },
+    { name: 'Portafolio', href: '/#portafolio' },
+    { name: 'Opiniones', href: '/#opiniones' },
+    { name: 'Nosotros', href: '/#nosotros' },
+    { name: 'Preguntas Frecuentes', href: '/#preguntas-frecuentes' },
+    { name: 'Contacto', href: '/#contacto' },
   ],
 }
 
-const Footer = () => {
+const Footer = ({ onNavigate }) => {
+  const handleLinkClick = (e, href) => {
+    if (!onNavigate) return
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
+    e.preventDefault()
+    onNavigate(href)
+  }
   return (
     <footer className="section-defer bg-slate-950 py-12 border-t border-slate-800 relative overflow-hidden">
       <TechBackground />
@@ -82,6 +89,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <a
                     href={link.href}
+                    onClick={(e) => handleLinkClick(e, link.href)}
                     className="text-gray-400 hover:text-blue-400 transition-colors text-sm"
                   >
                     {link.name}
@@ -99,6 +107,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <a
                     href={link.href}
+                    onClick={(e) => handleLinkClick(e, link.href)}
                     className="text-gray-400 hover:text-blue-400 transition-colors text-sm"
                   >
                     {link.name}
